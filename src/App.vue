@@ -4,7 +4,7 @@
     <dashboard v-if="user" :user="user"></dashboard>
 
     <small class="creds">
-      Source code on <a href="https://github.com/willowtreeapps/blockpass" target="_blank">Github</a>
+      Source code on <a href="https://github.com/sugarjig/blockpass" target="_blank">Github</a>
     </small>
   </div>
 </template>
