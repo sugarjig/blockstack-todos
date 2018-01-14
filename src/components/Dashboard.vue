@@ -19,7 +19,7 @@
           <form @submit.prevent="addPassword" :disabled="! username || ! password">
             <div class="input-group">
               <input v-model="username" type="text" class="form-control" placeholder="Enter a username..." autofocus>
-              <input v-model="password" type="text" class="form-control" placeholder="Enter a password..." autofocus>              
+              <input v-model="password" type="password" class="form-control" placeholder="Enter a password..." autofocus>              
               <span class="input-group-btn">
                 <button class="btn btn-default" type="submit" :disabled="! username || ! password">Add</button>
               </span>
@@ -30,9 +30,12 @@
             <li v-for="password in passwords"
               class="list-group-item"
               :key="password.id">
-              {{password.username}}: {{password.password}}
+              {{password.username}}: {{password.show ? password.password : password.password.replace(/./g, "*")}}
+              <a @click.prevent="passwords[passwords.indexOf(password)].show = !passwords[passwords.indexOf(password)].show"
+                class="action pull-right"
+                href="#">O</a>
               <a @click.prevent="passwords.splice(passwords.indexOf(password), 1)"
-                class="delete pull-right"
+                class="action pull-right"
                 href="#">X</a>
             </li>
           </ul>
@@ -79,7 +82,8 @@ export default {
       this.passwords.unshift({
         id: this.uidCount++,
         username: this.username.trim(),
-        password: this.password.trim()
+        password: this.password.trim(),
+        show: false
       })
       this.username = ''
       this.password = ''
@@ -122,11 +126,11 @@ label {
   }
 }
 .list-group-item {
-  .delete {
+  .action {
     display: none;
   }
 
-  &:hover .delete {
+  &:hover .action {
     display: inline;
     color: grey;
     &:hover {
