@@ -16,11 +16,12 @@
             </small>
 
           </h2>
-          <form @submit.prevent="addPassword" :disabled="! password">
+          <form @submit.prevent="addPassword" :disabled="! username || ! password">
             <div class="input-group">
-              <input v-model="password" type="text" class="form-control" placeholder="Save a password..." autofocus>
+              <input v-model="username" type="text" class="form-control" placeholder="Enter a username..." autofocus>
+              <input v-model="password" type="text" class="form-control" placeholder="Enter a password..." autofocus>              
               <span class="input-group-btn">
-                <button class="btn btn-default" type="submit" :disabled="! password">Add</button>
+                <button class="btn btn-default" type="submit" :disabled="! username || ! password">Add</button>
               </span>
             </div>
           </form>
@@ -30,12 +31,7 @@
               class="list-group-item"
               :class="{completed: password.completed}"
               :key="password.id">
-              <label>
-                <input type="checkbox" v-model="password.completed">{{ password.text }}
-              </label>
-              <a @click.prevent="passwords.splice(passwords.indexOf(password), 1)"
-                class="delete pull-right"
-                href="#">X</a>
+              {{password.username}}: {{password.text}}
             </li>
           </ul>
 
@@ -55,6 +51,7 @@ export default {
     return {
       blockstack: window.blockstack,
       passwords: [],
+      username: '',
       password: '',
       uidCount: 0
     }
@@ -79,9 +76,11 @@ export default {
       }
       this.passwords.unshift({
         id: this.uidCount++,
+        username: this.username.trim(),
         text: this.password.trim(),
         completed: false
       })
+      this.username = ''
       this.password = ''
     },
 
