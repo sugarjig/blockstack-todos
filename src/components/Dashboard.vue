@@ -29,7 +29,6 @@
           <ul class="list-group">
             <li v-for="password in passwords"
               class="list-group-item"
-              :class="{completed: password.completed}"
               :key="password.id">
               {{password.username}}: {{password.text}}
             </li>
@@ -77,8 +76,7 @@ export default {
       this.passwords.unshift({
         id: this.uidCount++,
         username: this.username.trim(),
-        text: this.password.trim(),
-        completed: false
+        text: this.password.trim()
       })
       this.username = ''
       this.password = ''
@@ -121,10 +119,6 @@ label {
   }
 }
 .list-group-item {
-  &.completed label {
-    text-decoration: line-through;
-  }
-
   .delete {
     display: none;
   }
