@@ -31,6 +31,9 @@
               class="list-group-item"
               :key="password.id">
               {{password.username}}: {{password.text}}
+              <a @click.prevent="passwords.splice(passwords.indexOf(password), 1)"
+                class="delete pull-right"
+                href="#">X</a>
             </li>
           </ul>
 
