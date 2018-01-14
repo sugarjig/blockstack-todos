@@ -30,7 +30,7 @@
             <li v-for="password in passwords"
               class="list-group-item"
               :key="password.id">
-              {{password.username}}: {{password.text}}
+              {{password.username}}: {{password.password}}
               <a @click.prevent="passwords.splice(passwords.indexOf(password), 1)"
                 class="delete pull-right"
                 href="#">X</a>
@@ -79,7 +79,7 @@ export default {
       this.passwords.unshift({
         id: this.uidCount++,
         username: this.username.trim(),
-        text: this.password.trim()
+        password: this.password.trim()
       })
       this.username = ''
       this.password = ''
