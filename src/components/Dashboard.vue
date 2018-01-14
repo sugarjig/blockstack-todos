@@ -3,37 +3,37 @@
     <div class="container">
       <div class="row">
         <div class="col-md-8 col-md-offset-2">
-          <h1 class="page-header">Blockstack Todo App
+          <h1 class="page-header">BlockPass App
             <img :src="user.avatarUrl() ? user.avatarUrl() : '/avatar-placeholder.png'" class="avatar">
             <small><span class="sign-out">(<a href="#" @click.prevent="signOut">Sign Out</a>)</span></small>
           </h1>
           <h2 class="user-info">
             <small>
-              {{ user.name() ? user.name() : 'Nameless Person'}}'s Todos
+              {{ user.name() ? user.name() : 'Nameless Person'}}'s Passwords
             </small>
             <small class="pull-right">
             {{ user.username ? user.username : user.identityAddress }}
             </small>
 
           </h2>
-          <form @submit.prevent="addTodo" :disabled="! todo">
+          <form @submit.prevent="addPassword" :disabled="! password">
             <div class="input-group">
-              <input v-model="todo" type="text" class="form-control" placeholder="Write a todo..." autofocus>
+              <input v-model="password" type="text" class="form-control" placeholder="Save a password..." autofocus>
               <span class="input-group-btn">
-                <button class="btn btn-default" type="submit" :disabled="! todo">Add</button>
+                <button class="btn btn-default" type="submit" :disabled="! password">Add</button>
               </span>
             </div>
           </form>
 
           <ul class="list-group">
-            <li v-for="todo in todos"
+            <li v-for="password in passwords"
               class="list-group-item"
-              :class="{completed: todo.completed}"
-              :key="todo.id">
+              :class="{completed: password.completed}"
+              :key="password.id">
               <label>
-                <input type="checkbox" v-model="todo.completed">{{ todo.text }}
+                <input type="checkbox" v-model="password.completed">{{ password.text }}
               </label>
-              <a @click.prevent="todos.splice(todos.indexOf(todo), 1)"
+              <a @click.prevent="passwords.splice(passwords.indexOf(password), 1)"
                 class="delete pull-right"
                 href="#">X</a>
             </li>
@@ -46,7 +46,7 @@
 </template>
 
 <script>
-var STORAGE_FILE = 'todos.json'
+var STORAGE_FILE = 'passwords.json'
 
 export default {
   name: 'dashboard',
@@ -54,17 +54,17 @@ export default {
   data () {
     return {
       blockstack: window.blockstack,
-      todos: [],
-      todo: '',
+      passwords: [],
+      password: '',
       uidCount: 0
     }
   },
   watch: {
-    todos: {
-      handler: function (todos) {
+    passwords: {
+      handler: function (passwords) {
         const blockstack = this.blockstack
         const encrypt = true
-        return blockstack.putFile(STORAGE_FILE, JSON.stringify(todos), encrypt)
+        return blockstack.putFile(STORAGE_FILE, JSON.stringify(passwords), encrypt)
       },
       deep: true
     }
@@ -73,29 +73,29 @@ export default {
     this.fetchData()
   },
   methods: {
-    addTodo () {
-      if (!this.todo.trim()) {
+    addPassword () {
+      if (!this.password.trim()) {
         return
       }
-      this.todos.unshift({
+      this.passwords.unshift({
         id: this.uidCount++,
-        text: this.todo.trim(),
+        text: this.password.trim(),
         completed: false
       })
-      this.todo = ''
+      this.password = ''
     },
 
     fetchData () {
       const blockstack = this.blockstack
       const decrypt = true
       blockstack.getFile(STORAGE_FILE, decrypt)
-      .then((todosText) => {
-        var todos = JSON.parse(todosText || '[]')
-        todos.forEach(function (todo, index) {
-          todo.id = index
+      .then((passwordsText) => {
+        var passwords = JSON.parse(passwordsText || '[]')
+        passwords.forEach(function (password, index) {
+          password.id = index
         })
-        this.uidCount = todos.length
-        this.todos = todos
+        this.uidCount = passwords.length
+        this.passwords = passwords
       })
     },
 

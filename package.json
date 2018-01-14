@@ -1,7 +1,7 @@
 {
-  "name": "bs-todo",
+  "name": "blockpass",
   "version": "4.0.0",
-  "description": "A decentralized Todo app built on Blockstack",
+  "description": "A decentralized password manager app built on Blockstack",
   "author": "Michael Stivala <michaelstivala@me.com>",
   "private": true,
   "scripts": {

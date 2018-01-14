@@ -1,9 +1,9 @@
 {
-  "name": "Todo App",
-  "start_url": "http://blockstack-todos.appartisan.com",
-  "description": "A simple todo app build on blockstack",
+  "name": "Password Manager App",
+  "start_url": "http://localhost:8080",
+  "description": "A simple password manager app build on blockstack",
   "icons": [{
-    "src": "http://blockstack-todos.appartisan.com/logo.png",
+    "src": "http://localhost:8000/logo.png",
     "sizes": "400x400",
     "type": "image/png"
   }]

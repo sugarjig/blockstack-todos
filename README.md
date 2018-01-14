@@ -1,6 +1,6 @@
-# Blockstack Todo App
+# Blockstack Password Manager App
 
-> A simple Vue.js Todo app built for the decentralized web.
+> A simple Vue.js password manager app built for the decentralized web.
 
 ## Build Setup
 
@@ -25,9 +25,9 @@ For detailed explanation on how things work, checkout the [guide](http://vuejs-t
 
 ### Running with the Blockstack Test Environment
 
-First follow the above steps to setup the `blockstack-todo` application.
+First follow the above steps to setup the `blockpass` application.
 
-The `blockstack-todo` is easiest to develop against a [`regtest`](https://bitcoin.org/en/glossary/regression-test-mode) bitcoin environment. There are a [couple of ways](https://github.com/blockstack/blockstack-core/tree/master/integration_tests#getting-started-with-docker) to setup the environment, but the easiest is through the [`docker`](https://www.docker.com/what-docker) setup. To use it first [install Docker](https://docs.docker.com/engine/installation/) and `docker-compose` (comes with the `docker` install on MacOS and Windows, but is a separate install on linux: `apt-get install docker-compose`)
+The `blockpass` is easiest to develop against a [`regtest`](https://bitcoin.org/en/glossary/regression-test-mode) bitcoin environment. There are a [couple of ways](https://github.com/blockstack/blockstack-core/tree/master/integration_tests#getting-started-with-docker) to setup the environment, but the easiest is through the [`docker`](https://www.docker.com/what-docker) setup. To use it first [install Docker](https://docs.docker.com/engine/installation/) and `docker-compose` (comes with the `docker` install on MacOS and Windows, but is a separate install on linux: `apt-get install docker-compose`)
 
 To get started make sure you stop any running Blockstack applications:
 
@@ -68,7 +68,7 @@ Choose the default storage option to get started quickly.
 
 > You will see the balance in your browser wallet and can use that to purchase names.
 
-After that, make sure you have started your `blockstack-todo` application with the dev instructions in the first section. Open [`locahost:8080`](http://localhost:8080) and click the `Login` button. You will be redirected to a site on `blockstack.org` with a long auth string on the end:
+After that, make sure you have started your `blockpass` application with the dev instructions in the first section. Open [`locahost:8080`](http://localhost:8080) and click the `Login` button. You will be redirected to a site on `blockstack.org` with a long auth string on the end:
 
 ```
 https://blockstack.org/auth?authRequest=eyJ0eXAiOiJKV1QiLCJhbGciOi...
